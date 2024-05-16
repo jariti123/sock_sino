@@ -69,7 +69,6 @@ void hand_command(int client_socket)
         {
             sscanf(buffer, "%*s %s", name);
             int is_found = 0;
-            
             for (int i = 0; i < employee_count; i++)
             {
                 if (strcmp(employees[i].name, name) == 0)
