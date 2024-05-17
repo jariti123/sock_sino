@@ -8,9 +8,9 @@ def send_command(command):
     s.sendall(command.encode())
     response = s.recv(1024)
     try:
-        print("Server response:",response.replace('\x00', '').decode('utf-8'))
+        print("Server response:", response.decode('utf-8'))
     except UnicodeDecodeError:
-        print("Server response:", response.decode('latin1').strip())
+        print("Server response:", response.decode('latin1'))
 
 if len(sys.argv) < 3 and sys.argv[1] not in ["--save","--searchall"]:
     print("usage:./client --command [options]\n")
