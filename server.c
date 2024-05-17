@@ -20,6 +20,7 @@ Employee employees[100];
 
 int employee_count = 0;
 
+// 处理命令
 void hand_command(int client_socket)
 {
     char buffer[BUFFER_SIZE];
@@ -84,15 +85,6 @@ void hand_command(int client_socket)
             if (!is_found)
             {
                 write(client_socket, "Employee Not Found\n", 20);
-            }
-        }
-        else if (strcmp(command, "SEARCHALL") == 0)
-        {
-            for (int i = 0; i < employee_count; i++)
-            {
-                snprintf(buffer, BUFFER_SIZE, "Name : %s, Number : %s, Date : %s, Position : %s, Department : %s \n",
-                         employees[i].name, employees[i].number, employees[i].date, employees[i].position, employees[i].department);
-                write(client_socket, buffer, BUFFER_SIZE);
             }
         }
         else if (strcmp(command, "SAVE") == 0)

@@ -18,12 +18,11 @@ void send_command(int socket, const char *command)
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3 && strcmp(argv[1], "--save") != 0 && strcmp(argv[1], "--searchall") != 0)
+    if (argc < 3 && strcmp(argv[1], "--save") != 0)
     {
         printf("usage:./client --command [options]\n");
         printf("example:./client --search --name test1\n\n");
     }
-    // printf("argc %d\n, argv[1] %d, argv[2] %d", argc, strcmp(argv[1], "--add"),strcmp(argv[2], "--name"));
     int client_socket;
     struct sockaddr_in server_addr;
 
@@ -73,11 +72,6 @@ int main(int argc, char *argv[])
         // 执行 查询
         snprintf(command, BUFFER_SIZE, "SEARCH %s", argv[3]);
     }
-    else if (strcmp(argv[1], "--searchall") == 0 && argc == 2)
-    {
-        // 执行 查询
-        snprintf(command, BUFFER_SIZE, "SEARCHALL");
-    }
     else if (strcmp(argv[1], "--save") == 0 && argc == 2)
     {
         // 执行存储
@@ -89,6 +83,7 @@ int main(int argc, char *argv[])
         close(client_socket);
         return -1;
     }
+    // 封装命令后发送
     send_command(client_socket, command);
     close(client_socket);
     return 0;
