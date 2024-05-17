@@ -33,6 +33,7 @@ void hand_command(int client_socket)
 
         if (strcmp(command, "ADD") == 0)
         {
+            // 这里要加一个 比较是否有相同的数据 ， 主键是name
             sscanf(buffer, "%*s %s %s %s %s %s", name, number, date, position, department);
             strcpy(employees[employee_count].name, name);
             strcpy(employees[employee_count].number, number);
